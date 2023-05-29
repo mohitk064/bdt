@@ -1,0 +1,19 @@
+abstract class Notification
+case class SMS (mobile:String,msg:String) extends Notification
+case class Email(emailAddr:String,subject:String,body:String) extends Notification
+object temp{
+def showNotification(notification:Notification):String={
+notification match{
+case Email(emailAddr,subject,_)=>
+s"You got an email from $emailAddr with subject:$subject"
+case SMS(number,message)=>
+s"You got an SMS from $number ! Message:$message"
+}
+}
+def main(args:Array[String]):Unit={
+val someSms=SMS("12345","Are you there?")
+val someEmail=Email("subhrajit.b@nmit.ac.in","BIg Data Course","Intro to BIg Data,NoSQL Databases,Spark RDDS,SQL,STreaming" )
+println(showNotification(someSms))
+println(showNotification(someEmail)) 
+}
+}
